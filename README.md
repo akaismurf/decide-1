@@ -2,6 +2,8 @@
 
 [![Python application](https://github.com/jagalindo/decide/actions/workflows/django.yml/badge.svg)](https://github.com/jagalindo/decide/actions/workflows/django.yml)
 
+[![GitHub Actions Demo](https://github.com/akaismurf/decide-1/actions/workflows/hellow.yml/badge.svg?branch=master)](https://github.com/akaismurf/decide-1/actions/workflows/hellow.yml)
+
 Plataforma voto electrónico educativa
 =====================================
 
