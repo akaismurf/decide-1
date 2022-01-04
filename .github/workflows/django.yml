@@ -4,12 +4,18 @@ on:
   push:
     branches:
       - master
+  workflow_call:
+    secrets:
+      CODACY_PROJECT_TOKEN:
+        required: true
+      HEROKU_API_KEY:
+        required: true
 
 jobs:
   build:
     strategy:
         matrix:
-          pyversion: ['3.5','3.8']
+          pyversion: ['3.8']
     runs-on: ubuntu-latest
 
     services:
@@ -46,16 +52,3 @@ jobs:
       with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
           coverage-reports: decide/coverage.xml
-  deploy:
-    needs: build
-    if: ${{github.ref == 'refs/heads/master'}}
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-      with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "decideakai"
-          heroku_email: "akaismurf2021@gmail.com"
-    - run: heroku run -a <Heroku app name> sh -c "cd decide && python manage.py shell -c \"from django.contrib.auth.models import User; User.objects.filter(username='admin') or User.objects.create_superuser('admin', 'admin@example.com', 'admin')\""
-
