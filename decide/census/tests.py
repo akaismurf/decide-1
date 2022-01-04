@@ -7,7 +7,7 @@ from .models import Census
 from base import mods
 from base.tests import BaseTestCase
 
-
+#clase de tests
 class CensusTestCase(BaseTestCase):
 
     def setUp(self):
